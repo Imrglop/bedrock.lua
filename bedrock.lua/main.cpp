@@ -4,6 +4,7 @@
 #include <Psapi.h>
 #include <chrono>
 #include <MinHook.h>
+#include "Utils/Utils.h"
 
 int* keys;
 
@@ -61,6 +62,8 @@ void scanSigs() {
     uintptr_t off2 = sigKeys - gameInfo::base + off + 0x7;
     keys = (int*)(gameInfo::base + off2);
     llog("Key map: " << keys);
+    llog("Key hook: " << reinterpret_cast<void*>(gameFunc.onKey));
+    llog("HT: " << reinterpret_cast<void*>(gameFunc.hurtTime));
 }
 
 void _dllExit(HMODULE hModule, DWORD dwExitCode) {
@@ -78,8 +81,7 @@ int __stdcall init(HMODULE hModule)
     SetConsoleTitle(TEXT("bedrock.lua"));
 #pragma warning(disable : 4996)
     std::string appdata(getenv("localappdata"));
-    appdata = appdata.substr(0, appdata.size() - 2);
-    appdata += "LocalState\\games\\com.mojang\\";
+    appdata = utils::getParentFolderOf(appdata);
 
     MH_Initialize();
     llog("Creating Hooks");
