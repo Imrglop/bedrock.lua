@@ -341,4 +341,4 @@ healthchecksdb
 
 # Adjustments / Custom
 
-Depends/*
+Depends/

@@ -69,11 +69,11 @@ bool Scripting::loadMod(std::string folderPath)
 		err("Outdated mod! Currently, outdated mods are not allowed. This might change in another update. Newest api version is: " << CURRENT_API_VERSION << "\n Received api versoin: " << apiVersion);
 		return false;
 	}
-	for (int i = 0; i < entryPoint.size(); i++)
+	for (size_t i = 0; i < entryPoint.size(); i++)
 	{
 		char ch = entryPoint[i];
 		if (ch != '/') continue;
-		err("Currently due to security reasons, you cannot specify directory paths in the 'main' feild. This may change soon.");
+		err("Currently due to security and UWP limitation reasons, you cannot specify directory paths in the 'main' feild. This may change soon.");
 		return false;
 	}
 	if (entryPoint == "null") {

@@ -6,12 +6,14 @@ namespace lua_io {
 		for (int i = 0; i < args; ++i) {
 			std::cout << lua_tostring(L, i);
 		}
+		return 1;
 	}
 	int errRaw(lua_State* L) {
 		int args = lua_gettop(L);
 		for (int i = 0; i < args; ++i) {
 			std::cerr << lua_tostring(L, i);
 		}
+		return 1;
 	}
 	int input(lua_State* L) {
 		int args = lua_gettop(L);
@@ -21,6 +23,7 @@ namespace lua_io {
 		const char* line = "";
 		std::cin.getline((char*)line, 0xff);
 		lua_pushstring(L, line);
+		return 1;
 	}
 }
 

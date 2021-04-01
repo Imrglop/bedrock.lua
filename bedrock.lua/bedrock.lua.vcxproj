@@ -188,6 +188,7 @@
     <ClInclude Include="Utils\hook.h" />
     <ClInclude Include="Utils\memory.h" />
     <ClInclude Include="Utils\SA_utils.h" />
+    <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripting\api\LuaAddonEngine.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Utils\hook.cpp" />
     <ClCompile Include="Utils\memory.cpp" />
     <ClCompile Include="Utils\SA_utils.cpp" />
+    <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

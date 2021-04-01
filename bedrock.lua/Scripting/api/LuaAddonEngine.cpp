@@ -1,5 +1,6 @@
 #include "LuaAddonEngine.h"
 #include "../../Utils/memory.h"
+#include "../../shared.h"
 
 namespace lua_addon_engine {
 	const char* JsonUI = (const char*)(memory::getMLPtrAddy(_moduleBase() + 0x03787148, {}) + 0xAEBC + 1048);
@@ -22,6 +23,6 @@ namespace lua_addon_engine {
 	}
 }
 
-void initFunctions(lua_State* L) {
+void LuaAddonEngine::initFunctions(lua_State* L) {
 	lua_register(L, "__W_GAME_ADDON_ENGINE_GET_FOREGROUND_JSON_UI__", lua_addon_engine::getJsonUI);
 }

@@ -1,6 +1,6 @@
 #include "Utils.h"
 
-std::string utils::getParentFolderOf(std::string in, int purgeAmount = 0, char ch1 = '\\', char ch2 = '/')
+std::string utils::getParentFolderOf(std::string in, int purgeAmount, char ch1, char ch2)
 {
 	std::string str(in);
 	int amountOfSlash = 0;
