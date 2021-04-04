@@ -91,6 +91,7 @@ int __stdcall init(HMODULE hModule)
     mods.loadMods(appdata);
     llog("Mods loaded.");
 
+    // TODO: real shutdown system
     while (true) {
         Sleep(17);
         if (GetAsyncKeyState(VK_ESCAPE) & 1)
@@ -108,7 +109,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 {
     if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
 #pragma region Console Init
+#if _DEBUG
         AllocConsole();
+#endif
         freopen_s(&pCout, "CONOUT$", "w", stdout);
         freopen_s(&pCin, "CONIN$", "r", stdin);
 #pragma endregion

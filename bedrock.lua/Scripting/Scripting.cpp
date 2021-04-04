@@ -49,6 +49,7 @@ bool Scripting::loadMod(std::string folderPath)
 	std::string modVersion = manifestFile.getString("version");
 	std::string entryPoint = folderPath + "\\" + manifestFile.getString("main");
 	int apiVersion = manifestFile.getInteger("api_version");
+	bool requireConsole = manifestFile.getBool("require_console");
 #pragma region error catching
 	if (modName == "null"
 		|| modName.size() < 3
@@ -79,6 +80,9 @@ bool Scripting::loadMod(std::string folderPath)
 	if (entryPoint == "null") {
 		err("Invalid or no 'main' feild specified. This is where the main script should run. 'luac' or compiled code is recommended.");
 		return false;
+	}
+	if (requireConsole == true) {
+		AllocConsole();
 	}
 #pragma endregion
 	lua_State* L = luaL_newstate();
@@ -119,6 +123,7 @@ bool Scripting::loadMods(string gameData)
 	else {
 		llog("Mods directory created: " << modsDir);
 	}
+	// TODO: loop through dir
 	loadMod(modsDir + "\\test");
 	return true;
 }
@@ -161,6 +166,7 @@ bool Scripting::onKey(int keyCode, int status)
 {
 	for (std::map<std::string, lua_State*>::iterator it = this->loadedScripts.begin(); it != this->loadedScripts.end(); ++it)
 	{
+		// TODO: add listener system
 		lua_State* L = it->second;
 		lua_getglobal(L, "System");
 		if (lua_istable(L, -1)) {
@@ -193,6 +199,7 @@ bool Scripting::onKey(int keyCode, int status)
 
 void Scripting::unloadMods()
 {
+	// FIXME: crash
 	llog("Unloading Mods");
 	for (std::map<std::string, lua_State*>::iterator it = this->loadedScripts.begin(); it != this->loadedScripts.end(); ++it)
 	{

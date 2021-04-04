@@ -170,6 +170,7 @@
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Hooks\HookBase.h" />
     <ClInclude Include="Scripting\api\LuaAddonEngine.h" />
     <ClInclude Include="Scripting\api\LuaIO.h" />
     <ClInclude Include="main.h" />
